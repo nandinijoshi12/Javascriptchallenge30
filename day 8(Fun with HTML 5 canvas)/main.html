@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fun with HTML5 Canvas</title>
+    </head>
+    <body>
+        <canvas id="draw" width="800" height="800"></canvas>
+        <style>
+            html, body{
+                margin:0;
+            }
+        </style>
+        <script>
+            const canvas = document.querySelector('#draw');
+            const ctx = canvas.getContext('2d');
+            console.log(ctx, "kahitari")
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.strokeStyle = '#BADA55'
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+        </script>
+    </body>
+</html>
