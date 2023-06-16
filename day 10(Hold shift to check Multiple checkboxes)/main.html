@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <!-- <div> -->
+            <div class="inbox">
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">This is an inbox layout</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">Check one item</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">Hold down to the shift</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">Button</label>
+                </div>
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">And select starting item to </label>
+                </div>
+                <div class="item">
+                    <input type="checkbox">
+                    <label for="cbox4">the one you want to select collectively</label>
+                </div>
+            </div>
+        <!-- </div> -->
+        <style>
+            body{
+                display: flex;
+                height: min-content;
+                justify-content: center;
+                align-items: center;
+                background-color: goldenrod;
+            }
+            label{
+                padding: 12px;
+            }
+            .inbox{
+                display: flex;
+                flex-direction: column;
+                background-color: whitesmoke;
+                border-radius: 8px;
+            }
+            .item{
+                display: flex;
+                flex-direction: row;
+                /* row-gap: calc(); */
+                padding-left: 12px;
+                border-bottom: 1px solid blue;
+            }
+            /* .cbox4 {
+                font-size: 5em;
+                color:red;
+                text-decoration: line-through;
+            } */
+            input[type=checkbox]:checked + label {
+                color:blue;
+                text-decoration: line-through;
+            }
+            /* .checkbox{
+                user-select: contain;
+            } */
+        </style>
+        <script>
+            const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+            console.log(checkboxes)
+
+            let lastChecked;
+
+            function handleCheck(e){
+                // check shift key is down or not
+                // check if key is unchecked or not
+                let inBetween =false;
+
+                if(e.shiftKey && this.checked){
+                    // go ahead and do stuff
+                    // loop over checkboxes
+                    checkboxes.forEach(checkbox => {
+                        console.log(checkbox);
+                        if(checkbox===this || checkbox===lastChecked){
+                            inBetween = !inBetween;
+                            console.log("staring to check em in between")
+                        }
+                        if(inBetween){
+                            checkbox.checked=true;
+                        }
+                    })
+                }
+                lastChecked = this;
+            }
+            checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
+        </script>
+    </body>
+</html>
